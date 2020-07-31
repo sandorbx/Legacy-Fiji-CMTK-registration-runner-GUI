@@ -12,5 +12,5 @@ sudo chmod -R a+rwx ~/Fiji-CMTK-registration-runner-GUI/cmtk_munger_wsl_linux
 cp ~/Fiji-CMTK-registration-runner-GUI/Fiji_CMTK_registration_runner.ijm ~/Fiji.app/plugins/Macros
 cp -r ~/Fiji-CMTK-registration-runner-GUI/cmtk ~/Fiji.app/lib/
 sudo chmod -R a+rwx ~/Fiji.app/lib/cmtk
-rm -r ~/Fiji-CMTK-registration-runner-GUI/cmtk_munger_wsl_linux
+rm -r ~/Fiji-CMTK-registration-runner-GUI/
 rm -r ~/fiji-linux64.zip
