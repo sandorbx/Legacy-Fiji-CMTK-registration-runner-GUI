@@ -1,10 +1,15 @@
-#@ File (label = "CMTK library with Munger",  style = "directory") cmtkpath
-#@ File (label = "reference brain") refbrain
-#@ File (label = "choose a location where your reg directory will be generated", style = "directory") workdir
-#@ File (label = "images to register", style = "directory") sampledir
-#@ String (label = "name your registration (optional)", ) name
-#@ boolean (label = "Clean up (if you want to keep the xforms don't check this)") clear
+#@ File (label = "CMTK library with Munger", style = "directory") cmtkpath
 
+#@ String (visibility=MESSAGE, value="Input section                                       ", required=false) section1
+#@ File (label = "reference brain") refbrain
+#@ File (label = "images to register", style = "directory") sampledir
+
+#@ String (visibility=MESSAGE, value="Output section                                     ", required=false) section2
+#@ File (label = "choose a location where your registration directory will be generated", style = "directory") workdir
+#@ String (label = "name your registration (optional)", ) name
+
+#@ String (visibility=MESSAGE, value="Operations                                          ", required=false) section3
+#@ boolean (label = "Clean up (if you want to keep the xforms don't check this)") clear
 #@ boolean (label = "run affine") affine
 #@ boolean (label = "run warp") warp
 @ boolean (label = "run reformat") reformat
@@ -42,7 +47,7 @@ if (rx3==1)
 	c3 = "03";
 else 
 	c3 = "";
-
+#@ String (visibility=MESSAGE, value="Parameters                                       ", required=false) section4
 #@ Integer (label="initial exploration step size", value=26) X 
 #@ Integer (label="coarsest resampling", value=8) C
 #@ Integer (label="Refine grid", value=4) R
