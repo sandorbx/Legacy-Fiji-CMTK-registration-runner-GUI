@@ -1,6 +1,5 @@
 # Fiji-CMTK-registration-runner-GUI
-Simple Fiji-Imagej macro GUI to run CMTK-Munger image registration (https://www.nitrc.org/projects/cmtk/) . You can pass arguments to the script interactively, several registration instances can be started up after each other. Fiji will display a log in the end of a successful or failed registration. but until the script concludes there is no feedback so you may want to follow the progress through a task manager program.
-
+Simple Fiji-Imagej macro GUI to run CMTK-Munger image registration (https://www.nitrc.org/projects/cmtk/) . You can pass arguments to the script interactively, several registration instances can be started up after each other. 
 The script will run on any generic pc from the last ten years I even tested it on a 8 year old thinkpad with acceptable performance. Worksx on Debian/Ubuntu, Windows 10 with WSL and most probably on other linux distributions and macOS
 
 ## Main features:
@@ -12,6 +11,8 @@ The script will run on any generic pc from the last ten years I even tested it o
 -The script calls CMTK-Munger registration through the native shell so it runs automatically after clicking ok
 
 -You can spawn several different registration jobs quickly, just open the macro gui again, set, click and repeat
+
+-Generates a log file with the commands an parameters
 
 -The script is very simple just 58 lines and written in Imagej script language, easy to understand and modify, especially adding imagej functions
 
@@ -62,7 +63,7 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 • almost everything is automatic the only prequisite that your image to register has to be contained in a separate folder  and named by adding a number indicating the channel in the end of the filename separated by and underscore (yourpicturename_01;yourpicturename_02 and so on)
 
-• Important to name your registration!
+• You can choose whether the script should clean up after itself and just keep the reformatted images with the log. Be mindful when you specify the paths to files and         folders(refbrain, reg dir, images)
 
 • Set your parameters, if you click ok the registration script starts and the GUI will close, Fiji will display a log in the end that could take a while , in case you want to follow the progress open a task manager program.
 
