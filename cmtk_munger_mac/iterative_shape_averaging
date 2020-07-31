@@ -1,0 +1,155 @@
+#!/bin/bash
+
+##
+##  Copyright 2009-2010, 2012, 2014 SRI International
+##
+##  This file is part of the Computational Morphometry Toolkit.
+##
+##  http://www.nitrc.org/projects/cmtk/
+##
+##  The Computational Morphometry Toolkit is free software: you can
+##  redistribute it and/or modify it under the terms of the GNU General Public
+##  License as published by the Free Software Foundation, either version 3 of
+##  the License, or (at your option) any later version.
+##
+##  The Computational Morphometry Toolkit is distributed in the hope that it
+##  will be useful, but WITHOUT ANY WARRANTY; without even the implied
+##  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+##  GNU General Public License for more details.
+##
+##  You should have received a copy of the GNU General Public License along
+##  with the Computational Morphometry Toolkit.  If not, see
+##  <http://www.gnu.org/licenses/>.
+##
+##  $Revision: 5337 $
+##
+##  $LastChangedDate: 2014-04-30 16:22:51 -0400 (Wed, 30 Apr 2014) $
+##
+##  $LastChangedBy: torstenrohlfing $
+##
+
+export CMTK_BINARY_DIR=${CMTK_BINARY_DIR:-/opt/local/lib/cmtk/bin}
+ 
+# Get the cmtk_functions.sh script from the scripts/ directory in the CMTK source tree
+. ${CMTK_BINARY_DIR}/cmtk_functions.sh
+ 
+# Check for command line arguments, print help if none given
+if test $# -lt 2; then
+    echo "Iterative Shape Averging"    
+    echo "USAGE: $0 referenceImagePath imagePath1 imagePath2 ..."
+    echo "  where the first argument is the path of the initial reference image and"
+    echo "  the remaining arguments are the remaining images in the set to be averaged."
+    echo "  Please make sure the initial reference image is not also listed in the"
+    echo "  list of remaining images."
+    exit 2
+fi
+ 
+# We should have received a list of all images via the command line
+IMAGES="$*"
+ 
+# Warp arguments common to all iterations
+WARP_ARGS_GLOBAL="--echo -v --refine 1 --delay-refine --energy-weight 1e-1"
+
+# This function computed the average of reformatted images.
+average_images()
+{
+    local out_img=$1
+    shift
+    local in_imgs="$*"
+
+    if CMTK_needs_update_and_lock ${out_img} ${in_imgs}; then
+	cmtk average_images --echo -o ${out_img} ${in_imgs}
+	CMTK_lockfile_delete ${out_img}
+    fi
+}
+    
+# This function will compute the affine alignments of one image to the initial reference.
+pass0()
+{
+    local images="$*"
+    local in_ref=$1
+
+    local out_nii_list=""
+    
+    local ref_name=`basename ${in_ref} | sed 's/\..*//g'`
+    for in_flt in ${images}; do
+	local flt_name=`basename ${in_flt} | sed 's/\..*//g'`
+	local out_xfm=isa/pass0/${flt_name}.xform
+	if CMTK_needs_update_and_lock ${out_xfm} ${in_ref} ${in_flt}; then
+	    if [ "${in_ref}" != "${in_flt}" ]; then
+		cmtk registration --echo --initxlate --auto-multi-levels 5 -v --dofs 6 --dofs 9 -o ${out_xfm} ${in_ref} ${in_flt}
+	    else
+		cmtk make_initial_affine --identity ${in_ref} ${in_flt} ${out_xfm}
+	    fi
+	    CMTK_lockfile_delete ${out_xfm}
+	fi
+	
+	local out_nii=isa/pass0/${flt_name}.nii
+	out_nii_list="${out_nii_list} ${out_nii}"
+
+	if CMTK_needs_update_and_lock ${out_nii} ${out_xfm}; then
+	    cmtk reformatx --echo --sinc-cosine -o ${out_nii} --floating ${in_flt} ${in_ref} ${out_xfm}
+	    CMTK_lockfile_delete ${out_nii}
+	fi
+    done
+
+    average_images isa/pass0/average.nii ${out_nii_list}
+}
+
+# Determine warp arguments from iteration number and reference image
+get_level_warp_args()
+{
+    local iteration=$1
+    local initial_ref=$2
+    
+    local cpspacing=`cmtk describe --machine-readable ${initial_ref} | fgrep FOV | cut -f2 | cmtk sequence | fgrep STATval | cut -f2`
+    for ((i=1;i<iteration;++i)); do
+	cpspacing=`echo ${cpspacing} | gawk '{print $1 / 2}'`
+    done
+    local warp_args="${WARP_ARGS_GLOBAL} --grid-spacing ${cpspacing}"
+
+    echo ${warp_args}
+}    
+
+# This function computes the subsequent rounds of nonrigid alignments.
+passn()
+{
+    local curr=$1
+    local prev=`expr ${curr} - 1`
+
+    shift
+    local images="$*"
+    local initial_ref=$1
+
+    local out_nii_list=""
+    local ref_nii=isa/pass${prev}/average.nii     
+
+    local warp_args=`get_level_warp_args ${curr} ${initial_ref}`
+    
+    for in_flt in ${images}; do
+	local flt_name=`basename ${in_flt} | sed 's/\..*//g'`
+
+	local out_xfm=isa/pass${curr}/${flt_name}.xform
+	local inp_xfm=isa/pass${prev}/${flt_name}.xform
+	if CMTK_needs_update_and_lock ${out_xfm} ${inp_xfm} ${ref_nii} ${in_flt}; then	    
+	    cmtk warp ${warp_args} --initial ${inp_xfm} -o ${out_xfm} ${ref_nii} ${in_flt}
+	    CMTK_lockfile_delete ${out_xfm}
+	fi
+	
+	local out_nii=isa/pass${curr}/${flt_name}.nii
+	out_nii_list="${out_nii_list} ${out_nii}"
+
+	if CMTK_needs_update_and_lock ${out_nii} ${out_xfm}; then
+	    cmtk reformatx --echo --sinc-cosine -o ${out_nii} --floating ${in_flt} ${ref_nii} ${out_xfm}
+	    CMTK_lockfile_delete ${out_nii}
+	fi
+    done
+
+    average_images isa/pass${curr}/average.nii ${out_nii_list}
+}
+
+# Run the iterative procedure
+pass0 ${IMAGES}
+for n in 1 2 3 4 5; do
+    passn ${n} ${IMAGES}
+done
