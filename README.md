@@ -36,7 +36,7 @@ The script will run on any generic pc from the last ten years I even tested it o
   
   `git clone https://github.com/sandorbx/Fiji-CMTK-registration-runner-GUI.git`
   
-  `bash ~/Fiji-CMTK-registration-runner-GUI/Fiji_CMTK_registration_runner.ijm/wslwin10_install.sh`
+  `bash ~/Fiji-CMTK-registration-runner-GUI/wslwin10_install.sh`
 
 
 6. Close ubuntu terminal,  you need an xterminal emulator to run GUI in the linux subsystem download and install mobaxterm home installer edition :  https://mobaxterm.mobatek.net/download-home-edition.html
