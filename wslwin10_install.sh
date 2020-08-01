@@ -15,4 +15,3 @@ cp -r ~/Fiji-CMTK-registration-runner-GUI/cmtk_munger_wsl_linux ~/Fiji.app/lib/
 sudo chmod -R a+rwx ~/Fiji.app/lib/cmtk_munger_wsl_linux
 rm -r ~/Fiji-CMTK-registration-runner-GUI/
 rm -r ~/fiji-linux64.zip
-~/Fiji.app/ImageJ-linux64
