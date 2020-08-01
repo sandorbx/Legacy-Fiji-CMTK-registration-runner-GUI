@@ -18,7 +18,7 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 ## Windows install:
 
-1. Install linux subsystem forWindows if you don’t have it already
+1. Install linux subsystem for Windows as follows:
 
 2. click into the windows search bar next to the startmenu icon, type powershell,  select and start powershell with admin privileges.
 
