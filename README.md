@@ -2,6 +2,8 @@
 Simple crossplatform Fiji-Imagej macro GUI to run CMTK-Munger image registration (https://www.nitrc.org/projects/cmtk/) . You can pass arguments to the script interactively, several registration instances can be started up after each other. 
 The script will run on any generic pc from the last ten years I even tested it on a 8 year old thinkpad with acceptable performance. Works on Debian/Ubuntu, Windows 10 with WSL  and macOS
 
+#### Test data avaible here: https://www.dropbox.com/sh/n866kvoakscig4i/AAB-m1WzqgpkEwk5PV5vMbzEa?dl=0
+
 ## Main features:
 
 -Cross platform, tested on macOS Catalina, Windows 10 WSL and Ubuntu  20.04
