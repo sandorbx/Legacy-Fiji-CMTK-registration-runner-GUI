@@ -3,6 +3,7 @@ sudo apt install cmtk -y
 sudo apt install pcmanfm -y
 sudo apt install mousepad -y
 sudo apt install unzip -y
+sudo apt install default-jre -y
 cd ~/
 wget "https://downloads.imagej.net/fiji/latest/fiji-linux64.zip"
 unzip fiji-linux64.zip
