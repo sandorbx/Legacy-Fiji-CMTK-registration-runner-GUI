@@ -24,13 +24,7 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 ## Linux install
 
-1. Install is fully automated (including CMTK and fiji),  if you don’t have Fiji, the installer will set one up for you. Simply run the  "linux_install.sh" bash file
-
-2. If you are unsure in any way simply type/paste these two commands into a newly opened terminal
-
-  `git clone https://github.com/sandorbx/Fiji-CMTK-registration-runner-GUI.git`
-
-  `bash ~/Fiji-CMTK-registration-runner-GUI.git/linux_install.sh`
+1. Install is fully automated (including CMTK and fiji),  if you don’t have Fiji, the installer will set one up for you. Simply run the  "linux_install.sh" bash file in the terminal. One way to do this is to download or clone the repo https://github.com/sandorbx/Fiji-CMTK-registration-runner-GUI.git. Extract the files if needed, right click on the folder and choose the "open terminal here" option, type in the terminal:  `bash linux_install.sh`
 
 3. If you need test data download this : https://www.dropbox.com/sh/n866kvoakscig4i/AAB-m1WzqgpkEwk5PV5vMbzEa?dl=0
 
