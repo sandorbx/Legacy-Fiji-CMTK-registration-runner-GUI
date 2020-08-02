@@ -85,6 +85,22 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 11. Alternatively you can always start fiji graphically in mobaxterm wsl terminal with the following command  `~/Fiji.app/ImageJ-linux64` , you just have to type/paste it in the first time after that just push up arrow in the terminal find it in the command history
 
+##macOS install
+
+1. Download Fiji https://imagej.net/Fiji.html#Downloads ,  if finder not unzip it, do it manually, then drag and drop the Fiji package to the desktop.  Right click on Fiji package choose open, macOS will complain, click cancel  if just gives you the move to bin option and right click open it again now there should be the "open"  button, click on it.
+
+2. Close Fiji for now. Download the repo https://github.com/sandorbx/Fiji-CMTK-registration-runner-GUI.git to a convenient location
+	
+
+3.  Download the folder with the cmtk binaries : https://www.dropbox.com/s/c2ijc5qzb732to0/cmtk_munger_mac.zip?dl=0   if anything needs to be unzipped don’t forget to do it
+
+4. From the downloaded repo "Fiji-CMTK-registration-runner-GUI-master"  copy the Fiji_CMTK_registration_runner.ijm file to your Fiji package plugins/Macros folder, to reach this destination right click on Fiji and choose "show package contents".
+
+5. Copy the downloaded "cmtk_munger_mac" into your fiji package "lib" library. Again right click on the fiji package and choose show package content to open as a library 
+
+6. In Fiji you can launch the registration GUI from the menu:  plugins>macros>Fiji CMTK registration runner GUI
+
+7 For cmtk munger library browse for the folder in Fiji.app/lib/cmtk_munger_mac
 
 
 
