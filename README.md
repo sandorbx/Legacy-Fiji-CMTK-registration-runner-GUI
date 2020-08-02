@@ -85,7 +85,7 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 11. Alternatively you can always start fiji graphically in mobaxterm wsl terminal with the following command  `~/Fiji.app/ImageJ-linux64` , you just have to type/paste it in the first time after that just push up arrow in the terminal find it in the command history
 
-##macOS install
+## macOS install
 
 1. Download Fiji https://imagej.net/Fiji.html#Downloads ,  if finder not unzip it, do it manually, then drag and drop the Fiji package to the desktop.  Right click on Fiji package choose open, macOS will complain, click cancel  if just gives you the move to bin option and right click open it again now there should be the "open"  button, click on it.
 
