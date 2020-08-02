@@ -1,18 +1,18 @@
-#@ File (label = "CMTK library with Munger", style = "directory") cmtkpath
+#@ File (label = "CMTK library with Munger (directory)", style = "directory") cmtkpath
 
 #@ String (visibility=MESSAGE, value="Input section                                       ", required=false) section1
-#@ File (label = "reference brain") refbrain
-#@ File (label = "images to register", style = "directory") sampledir
+#@ File (label = "reference brain (file)") refbrain
+#@ File (label = "images to register (directory)", style = "directory") sampledir
 
 #@ String (visibility=MESSAGE, value="Output section                                     ", required=false) section2
-#@ File (label = "choose a location where your registration directory will be generated", style = "directory") workdir
-#@ String (label = "name your registration (optional)", ) name
+#@ File (label = "choose a location where your registration directory will be generated (directory)", style = "directory") workdir
+#@ String (label = "name your registration, optional", ) name
 
 #@ String (visibility=MESSAGE, value="Operations                                          ", required=false) section3
 #@ boolean (label = "Clean up (if you want to keep the xforms don't check this)") clear
 #@ boolean (label = "run affine") affine
 #@ boolean (label = "run warp") warp
-@ boolean (label = "run reformat") reformat
+#@ boolean (label = "run reformat") reformat
 
 if (affine==1)
 	a = "-a ";
