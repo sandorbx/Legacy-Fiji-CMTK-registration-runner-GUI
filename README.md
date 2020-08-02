@@ -4,7 +4,7 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 ## Main features:
 
-- Cross platform, tested on macOS Catalina, Windows 10 WSL and Ubunto 20.04
+- Cross platform, tested on macOS Catalina, Windows 10 WSL and Ubuntu  20.04
 
 -Setup is fully automated and guided, Fiji, CMTK and the registration GUI works out of the box 
 
