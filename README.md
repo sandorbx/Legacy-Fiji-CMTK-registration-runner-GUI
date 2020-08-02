@@ -97,7 +97,7 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 6. In Fiji you can launch the registration GUI from the menu:  plugins>macros>Fiji CMTK registration runner GUI
 
-7 For cmtk munger library browse for the folder in Fiji.app/lib/cmtk_munger_mac
+7. For cmtk munger library browse for the folder in Fiji.app/lib/cmtk_munger_mac
 
 
 
