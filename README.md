@@ -32,7 +32,7 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 ## User Guide:
 
-• for cmtk library with munger browse for the location in your fiji folder Fiji.app/lib/cmtk
+• for cmtk library with munger browse for the location in your fiji folder Fiji.app/lib/cmtk_munger_wsl_linux
 
 • your data, refbrain and working directory can be wherever on your windows drives, you can browse for them from the gui, they will be in /mnt , (for example to go to your windows desktop folder /mnt/c/users/username/desktop)
 
@@ -75,11 +75,12 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 8. From now work in mobaxterm, you can already start your WSL Ubuntu session by double clicking it on the left side under user sessions
 
-9. Enter pcmanfm in the terminal to start a graphical file manager, you can manipulate files here and start fiji and other apps graphically, your windows drives are in /mnt ,      you can reach it going up the directory structure and in the base look for mnt
+9. You can start a graphical file manager from the terminal with the  `pcmanfm` command, you can manipulate files here and start fiji and other apps graphically, your windows drives are in the location /mnt on the filesystem, you can reach it going up the directory structure and in the base look for mnt
 
-10. start a wsl session in mobaxterm, run pcmanfm to start the file manager and with that start fiji, give permission to execute if asked. In fiji launch the registration GUI      through the plugins>macros menu
+10. You have to start fiji inside the mobaxterm terminal, use either the file manager above or the command `~/Fiji.app/ImageJ-linux64` .  From fiji launch the registration GUI      through the plugins>macros menu
 
-11. Alternatively you can always start fiji graphically in mobaxterm wsl terminal with the following command  `~/Fiji.app/ImageJ-linux64` , you just have to type/paste it in the first time after that just push up arrow in the terminal find it in the command history
+
+
 
 ## macOS install
 
@@ -90,7 +91,7 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 3.  Download the folder with the cmtk binaries : https://www.dropbox.com/s/c2ijc5qzb732to0/cmtk_munger_mac.zip?dl=0   if anything needs to be unzipped don’t forget to do it
 
-4. From the downloaded repo "Fiji-CMTK-registration-runner-GUI-master"  copy the Fiji_CMTK_registration_runner.ijm file to your Fiji package plugins/Macros folder, to reach this destination right click on Fiji and choose "show package contents".
+4. From the downloaded repo "Fiji-CMTK-registration-runner-GUI-master"  copy the "Fiji_CMTK_registration_runner.ijm" file to your Fiji package plugins/Macros folder, to reach this destination right click on Fiji and choose "show package contents".
 
 5. Copy the downloaded "cmtk_munger_mac" into your fiji package "lib" library. Again right click on the fiji package and choose show package content to open as a library 
 
