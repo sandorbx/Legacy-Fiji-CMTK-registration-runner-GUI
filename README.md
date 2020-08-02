@@ -44,7 +44,7 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 • make sure that none of the file or directory names containing spaces
 
-• registration directory with the right structure will be generated automatically and the script copies there your images to register so don’t forget to clean up later.
+• registration directory with the right structure will be generated automatically and the script copies there your images to register 
 
 • almost everything is automatic the only prequisite that your image to register has to be contained in a separate folder  and named by adding a number indicating the channel in the end of the filename separated by and underscore (yourpicturename_01;yourpicturename_02 and so on)
 
