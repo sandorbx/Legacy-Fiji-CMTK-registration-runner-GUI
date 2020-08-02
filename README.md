@@ -40,11 +40,11 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 • registration directory with the right structure will be generated automatically and the script copies there your images to register 
 
-• almost everything is automatic the only prequisite that your image to register has to be contained in a separate folder  and named by adding a number indicating the channel in the end of the filename separated by and underscore (yourpicturename_01;yourpicturename_02 and so on)
+• almost everything is automatic the only prequisite that your images to register has to be contained in a separate folder  and named by adding a number indicating the channel in the end of the filename separated by and underscore (yourpicturename_01;yourpicturename_02 and so on)
 
 • You can choose whether the script should clean up after itself and just keep the reformatted images with the log. Be mindful when you specify the paths to files and         folders(refbrain, reg dir, images)
 
-• Set your parameters, if you click ok the registration script starts and the GUI will close, Fiji will display a log in the end that could take a while , in case you want to follow the progress open a task manager program.
+• Set your parameters, if you click ok the registration script starts and the GUI will close, Fiji will display a log, in case you want to follow the progress of the actual commands in detail, open a task manager program.
 
 ## Windows install:
 
