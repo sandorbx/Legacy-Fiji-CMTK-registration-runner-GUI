@@ -8,8 +8,11 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 2020-08-13
 	- Reformat at the affine level now works as intended
+	
 	- Nicer datestamp
+	
 	- Added some basic feedback on erroneous operation choice combinations
+	
 
 ## Main features:
 
