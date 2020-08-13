@@ -44,6 +44,8 @@ The script will run on any generic pc from the last ten years I even tested it o
 
 • for cmtk library with munger browse for the location in your fiji folder Fiji.app/lib/cmtk_munger_wsl_linux
 
+• Very important to avoid any spaces or special characters in your files and folders names
+
 • your data, refbrain and working directory can be wherever on your windows drives, you can browse for them from the gui, they will be in /mnt , (for example to go to your windows desktop folder /mnt/c/users/username/desktop)
 
 • make sure that none of the file or directory names containing spaces
