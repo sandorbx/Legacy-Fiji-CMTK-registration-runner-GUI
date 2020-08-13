@@ -1,8 +1,15 @@
 # Fiji-CMTK-registration-runner-GUI
-Simple cross-platform Fiji-Imagej macro GUI to run CMTK-Munger image registration (https://www.nitrc.org/projects/cmtk/) . You can pass arguments to the script interactively, several registration instances can be started up after each other. 
+Cross-platform Fiji-Imagej macro GUI to run CMTK-Munger image registration (https://www.nitrc.org/projects/cmtk/) . You can pass arguments to the script interactively, several registration instances can be started up after each other. 
 The script will run on any generic pc from the last ten years I even tested it on a 8 year old thinkpad with acceptable performance. Works on Debian/Ubuntu, Windows 10 with WSL  and macOS
 
 #### Test data  available here: https://www.dropbox.com/sh/n866kvoakscig4i/AAB-m1WzqgpkEwk5PV5vMbzEa?dl=0
+
+## Change log
+
+2020-08-13
+	- Reformat at the affine level now works as intended
+	- Nicer datestamp
+	- Added some basic feedback on erroneous operation choice combinations
 
 ## Main features:
 

@@ -14,20 +14,27 @@
 #@ boolean (label = "run warp") warp
 #@ boolean (label = "run reformat") reformat
 
-if (affine==1)
-	a = "-a ";
-else 
-	a = "";
+options = "";
 
-if (warp==1)
-	w = "-w ";
-else 
-	w = "";
+if ((affine==1)&&(warp==1)&&(reformat==1)) 
+	operations = "-a -w -r";
+	
+else if ((affine==0)&&(warp==1)) 
+		print("warp needs a calculated affine, try again");
 
-if (reformat==1)
-	r = "-r ";
-else 
-	r = "";
+else if ((affine==0)&&(warp==0)&&(reformat==1))
+		print("You need affine or affine-warp to run reformat, try again"); 
+		
+else if ((affine==1)&&(warp==0)&&(reformat==1)){
+	operations = "-a -r";
+	options = "-l a";
+	}
+	
+else if ((affine==1)&&(warp==1)&&(reformat==0))
+		operations = "-a -w";
+		
+else if ((affine==1)&&(warp==0)&&(reformat==0))
+		operations = "-a";	
 
 #@ boolean (label = "reformat channel 01") rx1
 #@ boolean (label = "reformat channel 02") rx2
@@ -47,6 +54,7 @@ if (rx3==1)
 	c3 = "03";
 else 
 	c3 = "";
+	
 #@ String (visibility=MESSAGE, value="Parameters                                       ", required=false) section4
 #@ Integer (label="initial exploration step size", value=26) X 
 #@ Integer (label="coarsest resampling", value=8) C
@@ -56,7 +64,7 @@ else
 #@ Integer (label="Number of compute threads to use", style="slider", min=1, max=128, stepSize=1, value=80) T
 
 getDateAndTime(year, month, dayOfWeek, dayOfMonth, hour, minute, second, msec);
-datestamp= toString(year,0)+toString(month,0)+toString(dayOfMonth,0)+toString(hour,0)+toString(minute,0)+toString(second,0);
+datestamp= toString(year,0)+"-"+toString(month,0)+"-"+toString(dayOfMonth,0)+"-"+toString(hour,0)+"-"+toString(minute,0)+"-"+toString(second,0);
 
 exec("sh", "-c", "mkdir -p "+workdir+File.separator+name+"_Registration_"+datestamp+File.separator+"images");
 
@@ -64,13 +72,13 @@ workimagedir = workdir+File.separator+name+"_Registration_"+datestamp+File.separ
 
 exec("sh", "-c", "cp -r "+sampledir+File.separator+". "+workimagedir+".");
 
-print ("cd "+workdir+File.separator+name+"_Registration_"+datestamp+"; start=`date +%s`; "+cmtkpath+File.separator+"munger -b "+cmtkpath+" "+a+w+r+" "+c1+c2+c3+"  -X "+X+" -C "+C+" -G "+G+" -R "+R+" -A '--accuracy "+A+"' -W '--accuracy "+A+"'  -v -T 80 -s "+refbrain+" images"+"; end=`date +%s`; echo Execution time was `expr $end - $start` seconds.");
+print ("cd "+workdir+File.separator+name+"_Registration_"+datestamp+"; start=`date +%s`; "+cmtkpath+File.separator+"munger -b "+cmtkpath+" "+operations+" "+c1+c2+c3+" "+options+" -X "+X+" -C "+C+" -G "+G+" -R "+R+" -A '--accuracy "+A+"' -W '--accuracy "+A+"'  -v -T 80 -s "+refbrain+" images"+"; end=`date +%s`; echo Execution time was `expr $end - $start` seconds.");
 print("Directory structure generated and registration started at "+datestamp);
 
-exec("sh", "-c", "cd "+workdir+File.separator+name+"_Registration_"+datestamp+"; start=`date +%s`; "+cmtkpath+File.separator+"munger -b "+cmtkpath+" "+a+w+r+" "+c1+c2+c3+"  -X "+X+" -C "+C+" -G "+G+" -R "+R+" -A '--accuracy "+A+"' -W '--accuracy "+A+"'  -v -T 80 -s "+refbrain+" images"+"; end=`date +%s`; echo Execution time was `expr $end - $start` seconds.");
+exec("sh", "-c", "cd "+workdir+File.separator+name+"_Registration_"+datestamp+"; start=`date +%s`; "+cmtkpath+File.separator+"munger -b "+cmtkpath+" "+operations+" "+c1+c2+c3+" "+options+" -X "+X+" -C "+C+" -G "+G+" -R "+R+" -A '--accuracy "+A+"' -W '--accuracy "+A+"'  -v -T 80 -s "+refbrain+" images"+"; end=`date +%s`; echo Execution time was `expr $end - $start` seconds.");
 
 if (clear==1)
-	exec("sh", "-c", "rm -r "+workdir+File.separator+name+"_Registration_"+datestamp+File.separator+"images"+File.separator+" & rm -r "+workdir+File.separator+name+"_Registration_"+datestamp+File.separator+"Registration");
+exec("sh", "-c", "rm -r "+workdir+File.separator+name+"_Registration_"+datestamp+File.separator+"images"+File.separator+" & rm -r "+workdir+File.separator+name+"_Registration_"+datestamp+File.separator+"Registration");
 
 logdata = getInfo("log");
 File.saveString(logdata,workdir+File.separator+name+"_Registration_"+datestamp+File.separator+name+"_"+datestamp+"_log.txt");
