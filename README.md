@@ -1,4 +1,4 @@
-# Obsolate, stays for legacy reasons, use the new paralell GUI instead : https://github.com/sandorbx/Paralell-Fiji-CMTK-Registration
+# Obsolate, stays for legacy reasons, use the new parallel GUI instead : https://github.com/sandorbx/Parallel-Fiji-CMTK-Registration
 
 
 
